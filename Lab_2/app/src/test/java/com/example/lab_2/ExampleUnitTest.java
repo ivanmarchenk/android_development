@@ -1,4 +1,4 @@
-package com.example.lab_5_12_2020;
+package com.example.lab_2;
 
 import org.junit.Test;
 

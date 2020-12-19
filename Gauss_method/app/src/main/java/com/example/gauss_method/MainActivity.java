@@ -88,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-
+                for (int i = 0; i < 12; i++) {
+                    editText[i].setText("");
+                }
 
             }
         }

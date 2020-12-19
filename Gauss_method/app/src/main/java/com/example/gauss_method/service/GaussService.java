@@ -7,6 +7,10 @@ import android.os.IBinder;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Arrays;
+
 public class GaussService extends Service {
 
     private final IBinder binder = new GaussServiceBinder();
@@ -28,70 +32,61 @@ public class GaussService extends Service {
         Toast.makeText(this, "Service done", Toast.LENGTH_SHORT).show();
     }
 
-    static int PerformOperation(float[][] a, int n) {
-        int i, j, k = 0, c, flag = 0, m = 0;
-        float pro = 0;
-        for (i = 0; i < n; i++) {
-            if (a[i][i] == 0) {
-                c = 1;
-                while ((i + c) < n && a[i + c][i] == 0)
-                    c++;
-                if ((i + c) == n) {
-                    flag = 1;
-                    break;
-                }
-                for (j = i, k = 0; k <= n; k++) {
-                    float temp = a[j][k];
-                    a[j][k] = a[j + c][k];
-                    a[j + c][k] = temp;
-                }
-            }
-            for (j = 0; j < n; j++) {
-                if (i != j) {
-                    float p = a[j][i] / a[i][i];
-                    for (k = 0; k <= n; k++)
-                        a[j][k] = a[j][k] - (a[i][k]) * p;
-                }
+    public double[] solve(double[][] A, double[] B) {
+        int N = B.length;
+        for (int k = 0; k < N; k++) {
+            int max = k;
+            for (int i = k + 1; i < N; i++)
+                if (Math.abs(A[i][k]) > Math.abs(A[max][k]))
+                    max = i;
+            double[] temp = A[k];
+            A[k] = A[max];
+            A[max] = temp;
+            double t = B[k];
+            B[k] = B[max];
+            B[max] = t;
+            for (int i = k + 1; i < N; i++) {
+                double factor = A[i][k] / A[k][k];
+                B[i] -= factor * B[k];
+                for (int j = k; j < N; j++)
+                    A[i][j] -= factor * A[k][j];
             }
         }
-        return flag;
+        double[] solution = new double[N];
+        for (int i = N - 1; i >= 0; i--) {
+            double sum = 0.0;
+            for (int j = i + 1; j < N; j++)
+                sum += A[i][j] * solution[j];
+            solution[i] = (B[i] - sum) / A[i][i];
+        }
+        return solution;
     }
 
-    public String init (EditText[]editText) {
-        float[][] matrix = new float[3][4];
-
-        for (int i = 0; i < editText.length; i++) {
-            matrix[i / 4][i % 4] = Float.parseFloat(editText[i].getText().toString());
+    public String init(EditText[] editText) {
+        double[][] matrix = new double[3][3];
+        for (int i = 0; i < 9; i++) {
+            matrix[i / 3][i % 3] = Double.parseDouble(editText[i].getText().toString());
         }
-        int n = 3, flag = 0;
-        flag = PerformOperation(matrix, n);
-        if (flag == 1)
-            flag = CheckConsistency(matrix, n, flag);
-
-        if (flag == 2)
-            return ("Infinite Solutions Exists");
-        else if (flag == 3)
-            return ("No Solution Exists");
-        else {
-            StringBuilder print = new StringBuilder();
-            for (int i = 0; i < n; i++)
-                print.append(matrix[i][n] / matrix[i][i]).append(" ");
-            return print.toString();
+        double[] freeMembers = new double[3];
+        for (int i =0; i < 3; i++) {
+            freeMembers[i] = Double.parseDouble(editText[i+9].getText().toString());
         }
+
+        StringBuilder sb = new StringBuilder();
+
+        //return Arrays.toString(solve(matrix, freeMembers));
+        double[]res=solve(matrix, freeMembers);
+        for (int i = 0; i < res.length; i++) {
+            sb.append(round(res[i], 2)).append("\n");
+        }
+        return sb.toString();
     }
 
-    static int CheckConsistency(float[][] a, int n, int flag) {
-        int i, j;
-        float sum;
-        flag = 3;
-        for (i = 0; i < n; i++) {
-            sum = 0;
-            for (j = 0; j < n; j++)
-                sum = sum + a[i][j];
-            if (sum == a[i][j])
-                flag = 2;
-        }
-        return flag;
-    }
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
 
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
 }

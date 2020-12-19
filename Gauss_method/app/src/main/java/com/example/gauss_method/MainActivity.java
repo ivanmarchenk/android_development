@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
             GaussService.GaussServiceBinder binder = (GaussService.GaussServiceBinder) service;
             gaussService = binder.getService();
             isMainServiceBound = true;
-            Log.d("tol", "kol");
         }
 
         @Override
@@ -40,20 +39,17 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    /*@Override
+    @Override
     protected void onStart() {
         super.onStart();
         Intent intent = new Intent(this, GaussService.class);
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-    }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Intent intent = new Intent(this, GaussService.class);
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 
         editText[0]=findViewById(R.id.x11);
         editText[1]=findViewById(R.id.x12);

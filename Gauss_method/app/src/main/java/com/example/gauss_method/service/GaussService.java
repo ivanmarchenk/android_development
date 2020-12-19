@@ -2,7 +2,6 @@ package com.example.gauss_method.service;
 
 import android.app.Service;
 import android.content.Intent;
-import android.opengl.Matrix;
 import android.os.Binder;
 import android.os.IBinder;
 import android.widget.EditText;
@@ -24,18 +23,12 @@ public class GaussService extends Service {
         return binder;
     }
 
-    /*@Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(this, "Service starting", Toast.LENGTH_SHORT).show();
-        return START_STICKY;
-    }*/
-
     @Override
     public void onDestroy() {
         Toast.makeText(this, "Service done", Toast.LENGTH_SHORT).show();
     }
 
-    static int PerformOperation(float a[][], int n) {
+    static int PerformOperation(float[][] a, int n) {
         int i, j, k = 0, c, flag = 0, m = 0;
         float pro = 0;
         for (i = 0; i < n; i++) {
@@ -65,30 +58,29 @@ public class GaussService extends Service {
     }
 
     public String init (EditText[]editText) {
-//       float[][] matrix = new float[3][4];
-//
-//        for (int i = 0; i < editText.length; i++) {
-//            matrix[i / 4][i % 4] = Float.parseFloat(editText[i].getText().toString());
-//        }
-//        int n = 3, flag = 0;
-//        flag = PerformOperation(matrix, n);
-//        if (flag == 1)
-//            flag = CheckConsistency(matrix, n, flag);
-//
-//        if (flag == 2)
-//            return ("Infinite Solutions Exists");
-//        else if (flag == 3)
-//            return ("No Solution Exists");
-//        else {
-//            String print="";
-//            for (int i = 0; i < n; i++)
-//                print += (matrix[i][n] / matrix[i][i] +" ");
-//            return print;
-//        }
-        return "";
+        float[][] matrix = new float[3][4];
+
+        for (int i = 0; i < editText.length; i++) {
+            matrix[i / 4][i % 4] = Float.parseFloat(editText[i].getText().toString());
+        }
+        int n = 3, flag = 0;
+        flag = PerformOperation(matrix, n);
+        if (flag == 1)
+            flag = CheckConsistency(matrix, n, flag);
+
+        if (flag == 2)
+            return ("Infinite Solutions Exists");
+        else if (flag == 3)
+            return ("No Solution Exists");
+        else {
+            StringBuilder print = new StringBuilder();
+            for (int i = 0; i < n; i++)
+                print.append(matrix[i][n] / matrix[i][i]).append(" ");
+            return print.toString();
+        }
     }
 
-    static int CheckConsistency(float a[][], int n, int flag) {
+    static int CheckConsistency(float[][] a, int n, int flag) {
         int i, j;
         float sum;
         flag = 3;

@@ -71,13 +71,13 @@ public class GaussService extends Service {
             freeMembers[i] = Double.parseDouble(editText[i+9].getText().toString());
         }
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
 
         double[]res=solve(matrix, freeMembers);
         for (int i = 0; i < res.length; i++) {
-            sb.append(roundResultingRoots(res[i], 2)).append("\n");
+            stringBuilder.append(roundResultingRoots(res[i], 2)).append("\n");
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     public static double roundResultingRoots(double value, int places) {

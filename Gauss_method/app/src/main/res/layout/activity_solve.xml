@@ -8,10 +8,10 @@
 
     <TextView
         android:id="@+id/textViewResult"
-        style="@style/MyStyle"
+        style="@style/MyTextStyle"
         android:layout_width="156dp"
         android:layout_height="164dp"
-        android:text="TextView"
+        android:text="@string/textview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -8,10 +8,7 @@
 
     <EditText
         android:id="@+id/x32"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/buttonSolve"
         app:layout_constraintEnd_toStartOf="@+id/x33"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,10 +18,7 @@
 
     <EditText
         android:id="@+id/x33"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/buttonSolve"
         app:layout_constraintEnd_toStartOf="@+id/y3"
         app:layout_constraintStart_toEndOf="@+id/x32"
@@ -33,10 +27,7 @@
 
     <EditText
         android:id="@+id/x31"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/buttonSolve"
         app:layout_constraintEnd_toStartOf="@+id/x32"
         app:layout_constraintHorizontal_bias="0.5"
@@ -47,10 +38,7 @@
 
     <EditText
         android:id="@+id/x22"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/x32"
         app:layout_constraintEnd_toStartOf="@+id/x23"
         app:layout_constraintHorizontal_bias="0.5"
@@ -60,10 +48,7 @@
 
     <EditText
         android:id="@+id/x21"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/x31"
         app:layout_constraintEnd_toStartOf="@+id/x22"
         app:layout_constraintHorizontal_bias="0.5"
@@ -74,10 +59,7 @@
 
     <EditText
         android:id="@+id/x23"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/x33"
         app:layout_constraintEnd_toStartOf="@+id/y2"
         app:layout_constraintStart_toEndOf="@+id/x22"
@@ -100,10 +82,7 @@
 
     <EditText
         android:id="@+id/x11"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/x21"
         app:layout_constraintEnd_toStartOf="@+id/x12"
         app:layout_constraintHorizontal_bias="0.5"
@@ -115,10 +94,7 @@
 
     <EditText
         android:id="@+id/x13"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/x23"
         app:layout_constraintEnd_toStartOf="@+id/y1"
         app:layout_constraintStart_toEndOf="@+id/x12"
@@ -128,10 +104,7 @@
 
     <EditText
         android:id="@+id/x12"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/x22"
         app:layout_constraintEnd_toStartOf="@+id/x13"
         app:layout_constraintHorizontal_bias="0.5"
@@ -153,10 +126,7 @@
 
     <EditText
         android:id="@+id/y1"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/y2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -166,10 +136,7 @@
 
     <EditText
         android:id="@+id/y2"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/y3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -178,10 +145,7 @@
 
     <EditText
         android:id="@+id/y3"
-        android:layout_width="53dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="numberSigned|numberDecimal"
+        style="@style/MatrixInputWindowStyle"
         app:layout_constraintBottom_toTopOf="@+id/buttonSolve"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"

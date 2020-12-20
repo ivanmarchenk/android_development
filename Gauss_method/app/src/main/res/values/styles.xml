@@ -12,10 +12,18 @@
         <item name="android:textSize">30sp</item>
     </style>
 
-    <style name="MyStyle" parent="MyStyle" tools:ignore="ResourceCycle">
+    <style name="MyTextStyle" parent="MyTextStyle" tools:ignore="ResourceCycle">
         <item name="android:textColor">#546e7a</item>
         <item name="android:textSize">25sp</item>
         <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="MatrixInputWindowStyle" parent="MatrixInputWindowStyle" tools:ignore="ResourceCycle">
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_width">53dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">numberSigned|numberDecimal</item>
     </style>
 
 </resources>

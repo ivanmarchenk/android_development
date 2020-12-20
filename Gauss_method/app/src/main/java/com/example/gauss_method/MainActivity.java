@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSolve.setOnClickListener((View v) -> {
 
             Intent intentToSecondActivity = new Intent(MainActivity.this, SolveActivity.class);
-            String gaussResult = gaussService.init(editText);
+            String gaussResult = gaussService.initMatrix(editText);
             intentToSecondActivity.putExtra("Gauss result", gaussResult);
 
             startActivityForResult(intentToSecondActivity, REQUEST_CODE);
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 12; i++) {
                     editText[i].setText("");
                 }
-
             }
         }
     }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Метод Гаусса</string>
+    <string name="remove">Вернуться</string>
+    <string name="solve">Решить</string>
+</resources>

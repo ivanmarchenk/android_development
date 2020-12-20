@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Arrays;
 
 public class GaussService extends Service {
 
@@ -62,7 +61,7 @@ public class GaussService extends Service {
         return solution;
     }
 
-    public String init(EditText[] editText) {
+    public String initMatrix(EditText[] editText) {
         double[][] matrix = new double[3][3];
         for (int i = 0; i < 9; i++) {
             matrix[i / 3][i % 3] = Double.parseDouble(editText[i].getText().toString());
@@ -74,15 +73,14 @@ public class GaussService extends Service {
 
         StringBuilder sb = new StringBuilder();
 
-        //return Arrays.toString(solve(matrix, freeMembers));
         double[]res=solve(matrix, freeMembers);
         for (int i = 0; i < res.length; i++) {
-            sb.append(round(res[i], 2)).append("\n");
+            sb.append(roundResultingRoots(res[i], 2)).append("\n");
         }
         return sb.toString();
     }
 
-    public static double round(double value, int places) {
+    public static double roundResultingRoots(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
         BigDecimal bd = BigDecimal.valueOf(value);

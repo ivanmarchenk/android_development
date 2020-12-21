@@ -3,4 +3,5 @@
     <string name="app_name">Метод Гаусса</string>
     <string name="remove">Вернуться</string>
     <string name="solve">Решить</string>
+    <string name="textViewResult">Матрица не имеет решений</string>
 </resources>

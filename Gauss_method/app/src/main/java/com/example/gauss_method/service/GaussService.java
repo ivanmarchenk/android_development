@@ -8,6 +8,8 @@ import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.gauss_method.R;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -33,7 +35,8 @@ public class GaussService extends Service {
         Toast.makeText(this, "Service done", Toast.LENGTH_SHORT).show();
     }
 
-    public double[] solve(double[][] A, double[] B) {
+    public String solve(double[][] A, double[] B) {
+        StringBuilder stringBuilder = new StringBuilder();
         int N = B.length;
         for (int k = 0; k < N; k++) {
             int max = k;
@@ -47,10 +50,8 @@ public class GaussService extends Service {
             B[k] = B[max];
             B[max] = t;
             if (Math.abs(A[k][k]) <= EPSILON) {
-                Toast toast = Toast.makeText(this, "This matrix has no solutions", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-                break;
+                return getResources().getString(R.string.textViewResult);
+
             }
             for (int i = k + 1; i < N; i++) {
                 double factor = A[i][k] / A[k][k];
@@ -66,7 +67,10 @@ public class GaussService extends Service {
                 sum += A[i][j] * solution[j];
             solution[i] = (B[i] - sum) / A[i][i];
         }
-        return solution;
+        for (int i = 0; i < solution.length; i++) {
+            stringBuilder.append(roundResultingRoots(solution[i], 2)).append("\n");
+        }
+        return stringBuilder.toString();
     }
 
     public String initMatrix(EditText[] editText) {
@@ -81,11 +85,8 @@ public class GaussService extends Service {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        double[]res=solve(matrix, freeMembers);
-        for (int i = 0; i < res.length; i++) {
-            stringBuilder.append(roundResultingRoots(res[i], 2)).append("\n");
-        }
-        return stringBuilder.toString();
+        String res=solve(matrix, freeMembers);
+        return res;
     }
 
     public static double roundResultingRoots(double value, int places) {

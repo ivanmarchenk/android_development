@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import java.math.RoundingMode;
 public class GaussService extends Service {
 
     private final IBinder binder = new GaussServiceBinder();
+    private static final double EPSILON = 1e-10;
 
     public class GaussServiceBinder extends Binder {
         public GaussService getService() {
@@ -44,6 +46,12 @@ public class GaussService extends Service {
             double t = B[k];
             B[k] = B[max];
             B[max] = t;
+            if (Math.abs(A[k][k]) <= EPSILON) {
+                Toast toast = Toast.makeText(this, "This matrix has no solutions", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                break;
+            }
             for (int i = k + 1; i < N; i++) {
                 double factor = A[i][k] / A[k][k];
                 B[i] -= factor * B[k];
